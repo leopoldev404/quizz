@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+
+COPY backend/src/QuizzService.Api/QuizzService.Api.csproj QuizzService.Api/QuizzService.Api.csproj
+COPY backend/src/QuizzService.Core/QuizzService.Core.csproj QuizzService.Core/QuizzService.Core.csproj
+COPY backend/src/QuizzService.Infrastructure/QuizzService.Infrastructure.csproj QuizzService.Infrastructure/QuizzService.Infrastructure.csproj
+RUN dotnet restore -r linux-x64 "QuizzService.Api/QuizzService.Api.csproj"
+
+COPY backend/src/QuizzService.Api/ QuizzService.Api/
+COPY backend/src/QuizzService.Core/ QuizzService.Core/
+COPY backend/src/QuizzService.Infrastructure/ QuizzService.Infrastructure/
+WORKDIR /src/QuizzService.Api
+RUN dotnet publish -c Release --no-self-contained -r linux-x64 -o /app "QuizzService.Api.csproj"
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "QuizzService.Api.dll"]
