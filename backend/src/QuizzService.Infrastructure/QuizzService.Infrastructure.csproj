@@ -4,6 +4,10 @@
     <ProjectReference Include="..\QuizzService.Core\QuizzService.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="mongodb.driver" Version="2.21.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
