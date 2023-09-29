@@ -1,8 +1,8 @@
-using MediatR;
+using QuizzService.Core.Abstractions;
 
 namespace QuizzService.Core.Questions.Queries;
 
 public record GetQuestionsByQuizIdQuery(
     string QuizId,
     int PageNumber,
-    int PageSize) : IRequest<List<Question>>;
+    int PageSize) : IQuery<List<Question>>;

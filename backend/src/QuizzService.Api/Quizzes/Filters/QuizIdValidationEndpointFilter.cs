@@ -1,13 +1,14 @@
+
 using MediatR;
 using QuizzService.Core.Quizzes.Queries;
 
-namespace QuizzService.Api.Questions.Filters;
+namespace QuizzService.Api.Quizzes.Filters;
 
-public class QuizIdValidationFilter : IEndpointFilter
+public class QuizIdValidationEndpointFilter : IEndpointFilter
 {
     private readonly ISender sender;
 
-    public QuizIdValidationFilter(ISender sender)
+    public QuizIdValidationEndpointFilter(ISender sender)
     {
         this.sender = sender;
     }
@@ -25,7 +26,7 @@ public class QuizIdValidationFilter : IEndpointFilter
         var quiz = await sender.Send(new GetQuizByIdQuery(quizId));
         if (quiz is null)
         {
-            return Results.NotFound($"QuizId:{quiz} not found");
+            return Results.NotFound($"QuizId: {quizId} not found");
         }
 
         return await next(context);

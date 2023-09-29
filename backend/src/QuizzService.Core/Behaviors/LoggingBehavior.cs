@@ -1,7 +1,7 @@
-namespace QuizzService.Core.Behaviors;
-
 using MediatR;
 using QuizzService.Core.Logging;
+
+namespace QuizzService.Core.Behaviors;
 
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
@@ -18,7 +18,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     {
         logger.LogInformation($"Handling {typeof(TRequest).Name} - {request}");
         var response = await next();
-        logger.LogInformation($"Finished Handling {typeof(TResponse).Name}");
+        logger.LogInformation($"Handled {typeof(TRequest).Name}");
         return response;
     }
 }

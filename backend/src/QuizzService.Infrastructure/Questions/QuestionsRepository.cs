@@ -1,22 +1,18 @@
-using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using QuizzService.Core.Abstractions;
 using QuizzService.Core.Questions;
 using QuizzService.Core.Questions.Queries;
-using QuizzService.Infrastructure.Configurations;
 
 namespace QuizzService.Infrastructure.Questions;
 public class QuestionsRepository : IQuestionsRepository
 {
     private readonly IMongoCollection<Question> questionsCollection;
 
-    public QuestionsRepository(IOptions<QuizzDatabaseSettings> settings)
+    public QuestionsRepository(IMongoCollection<Question> questionsCollection)
     {
-        questionsCollection = new MongoClient(settings.Value.ConnectionString)
-            .GetDatabase(settings.Value.Database)
-                .GetCollection<Question>(settings.Value.QuestionsCollectionName);
+        this.questionsCollection = questionsCollection;
     }
 
-    public async ValueTask<List<Question>> FindQuestionsByQuizIdAsync(GetQuestionsByQuizIdQuery query)
+    public async ValueTask<List<Question>?> FindByQuizIdAsync(GetQuestionsByQuizIdQuery query)
         => await questionsCollection.Find(question => question.QuizId == query.QuizId).ToListAsync();
 }

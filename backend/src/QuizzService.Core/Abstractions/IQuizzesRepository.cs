@@ -5,6 +5,6 @@ namespace QuizzService.Core.Abstractions;
 
 public interface IQuizzesRepository
 {
-    ValueTask<Quiz> FindByIdAsync(GetQuizByIdQuery query);
-    ValueTask<List<Quiz>> FindAllAsync(GetQuizzesQuery query);
+    ValueTask<Quiz?> FindByIdAsync(GetQuizByIdQuery query);
+    ValueTask<List<Quiz>?> FindAllAsync(GetQuizzesQuery query);
 }

@@ -1,9 +1,8 @@
-using MediatR;
 using QuizzService.Core.Abstractions;
 
 namespace QuizzService.Core.Quizzes.Queries;
 
-public class GetQuizByIdQueryHandler : IRequestHandler<GetQuizByIdQuery, Quiz>
+public sealed class GetQuizByIdQueryHandler : IQueryHandler<GetQuizByIdQuery, Quiz>
 {
     private readonly IQuizzesRepository quizzesRepository;
 

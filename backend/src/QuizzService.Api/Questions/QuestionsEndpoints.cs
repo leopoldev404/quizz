@@ -1,5 +1,6 @@
 using MediatR;
-using QuizzService.Api.Questions.Filters;
+using QuizzService.Api.Quizzes.Filters;
+using QuizzService.Core.Questions.Queries;
 
 namespace QuizzService.Api.Questions;
 
@@ -10,7 +11,7 @@ public static class QuestionsEndpoints
     public static void MapQuestionsEndpoints(this WebApplication app)
     {
         app.MapGet(ROUTE, GetQuestionsByQuizIdAsync)
-            .AddEndpointFilter<QuizIdValidationFilter>();
+            .AddEndpointFilter<QuizIdValidationEndpointFilter>();
     }
 
     private async static ValueTask<IResult> GetQuestionsByQuizIdAsync(
@@ -19,21 +20,9 @@ public static class QuestionsEndpoints
         int pageNumber = 0,
         int PageSize = 10)
     {
-        // // var query = new GetQuestionsByQuizIdQuery(
-        // //     request.QuizId,
-        // //     request.PageNumber,
-        // //     request.PageSize);
+        var questions = await sender.Send(
+            new GetQuestionsByQuizIdQuery(quizId, pageNumber, PageSize));
 
-        // // var questions = await sender.Send(query);
-        // var questions = new List<Question>
-        // {
-        //     new("guid", "la madonnna", new string[] {"", "", "", ""}, "", DateTime.Now, request.QuizId),
-        //     new("guid", "la madonnna", new string[] {"", "", "", ""}, "", DateTime.Now, request.QuizId)
-        // };
-
-        // return questions.Count == 0
-        //     ? Results.NotFound($"No Questions for QuizId: {request.QuizId}")
-        //     : Results.Ok(questions);
-        return Results.Ok();
+        return Results.Ok(questions);
     }
 }
