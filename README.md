@@ -50,6 +50,7 @@ _Also no Unit or Integration test has been done for the frontend application_
 - Project structure following [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) principles
 - Developed following [Best Practices](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-7.0)
 - Based on .NET 7
+- TDD: Test Driven Development
 - [IDistributedCache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-7.0) caching implementation
 - [Serilog](https://github.com/serilog/serilog)
 - [Repository Pattern]()
