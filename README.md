@@ -58,7 +58,7 @@ _Also no Unit or Integration test has been done for the frontend application_
 - [CQRS](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 - [Mediator Pattern](https://en.wikipedia.org/wiki/Mediator_pattern) using [MediatR package](https://github.com/jbogard/MediatR)
 - [Pipeline Behaviors]() for Logging, Caching and Validation
-- UnitTesting and IntegrationTesting with [xUnit](https://xunit.net/) and [Testcontainers](https://dotnet.testcontainers.org/)
+- Unit and Integration Testing with [xUnit](https://xunit.net/), [Testcontainers](https://dotnet.testcontainers.org/) and [FluentAssertions](https://fluentassertions.com/)
 - [Docker](https://docs.docker.com/)
 - [Docker Compose](https://docs.docker.com/)
 - [MongoDB](https://www.mongodb.com/it-it?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-it_ps-all_desktop_it_lead&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=20378068754&adgroup=154980289881&cq_cmp=20378068754&gad=1&gclid=EAIaIQobChMI183GxdHXgQMV8oVoCR0pCAM3EAAYASAAEgLRPPD_BwE) as Database
