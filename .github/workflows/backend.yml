@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Go into backend folder
-        run: cd backend
+        run: cd backend/
 
       - name: Set up .NET 7
         uses: actions/setup-dotnet@v1
@@ -22,10 +22,10 @@ jobs:
           dotnet-version: 7.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore backend/QuizzService.sln
 
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build backend/QuizzService.sln --configuration Release
 
       - name: Test
-        run: dotnet test --configuration Release --no-build
+        run: dotnet test backend/QuizzService.sln --configuration Release --no-build
