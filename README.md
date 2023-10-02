@@ -61,7 +61,7 @@ _Also no Unit or Integration test has been done for the frontend application_
 - [Docker](https://docs.docker.com/)
 - [Docker Compose](https://docs.docker.com/)
 - [MongoDB](https://www.mongodb.com/it-it?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-it_ps-all_desktop_it_lead&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=20378068754&adgroup=154980289881&cq_cmp=20378068754&gad=1&gclid=EAIaIQobChMI183GxdHXgQMV8oVoCR0pCAM3EAAYASAAEgLRPPD_BwE) as Database
-- [MongoDB Driver package]() for database connection and operations
+- [MongoDB Driver package](https://www.mongodb.com/docs/drivers/) for database connection and operations
 
 ## **Missing** 🤔
 
