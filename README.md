@@ -69,3 +69,4 @@ _Also no Unit or Integration test has been done for the frontend application_
 - Authentication/Authorization service for users
 - CI-CD for Deployment
 - More accurate unit tests
+- Pagination for Questions
