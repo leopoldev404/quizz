@@ -1,4 +1,28 @@
+version: "3"
 services:
+  quizz-app:
+    container_name: quizz-app
+    build:
+      context: ../
+      dockerfile: ./docker/app-dockerfile
+    ports:
+      - "4000:80"
+    depends_on:
+      - quizz-backend
+      - quizz-db
+
+  quizz-backend:
+    container_name: quizz-backend
+    build:
+      context: ../
+      dockerfile: ./docker/backend-dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - quizz-db
+
   quizz-db:
     image: mongo
     container_name: quizz-db
@@ -11,18 +35,6 @@ services:
     volumes:
       - quizz-data:/data/db
       - ./../scripts/init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js
-
-  quizz-service:
-    container_name: quizz-service
-    build:
-      context: ../
-      dockerfile: ./docker/quizz-service-dockerfile
-    ports:
-      - "5000:80"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-      - quizz-db
 
 volumes:
   quizz-data:
