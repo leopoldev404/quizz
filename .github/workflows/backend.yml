@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Go into backend folder
-        run: cd backend/
-
       - name: Set up .NET 7
         uses: actions/setup-dotnet@v1
         with:
