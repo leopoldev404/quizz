@@ -1,9 +1,9 @@
-const database = "quizz";
-const collections = ["quizzes", "questions", "transactions", "scores"];
+const databaseName = "quizz";
+const collectionsNames = ["quizzes", "questions", "transactions", "scores"];
 
-use(database);
+use(databaseName);
 
-collections.forEach((value) => {
+collectionsNames.forEach((value) => {
   db.createCollection(value);
 });
 
@@ -19,7 +19,7 @@ db.quizzes.insertMany([
       "kids",
       "colombo",
       "french-revolution",
-      "italy-of-italy",
+      "union-of-italy",
     ],
     createdAt: new Date(),
   },
