@@ -9,7 +9,7 @@ public static class QuizzesEndpoints
 
     public static void MapQuizzesEndpoints(this WebApplication app)
     {
-        app.MapGet(ROUTE + "/{id}", GetQuizByIdAsync);
+        app.MapGet(ROUTE + "/{quizId}", GetQuizByIdAsync);
         app.MapGet(ROUTE, GetQuizzesAsync);
     }
 
@@ -18,10 +18,7 @@ public static class QuizzesEndpoints
         string quizId)
     {
         var quiz = await sender.Send(new GetQuizByIdQuery(quizId));
-
-        return quiz is null
-            ? Results.NotFound($"Not Found QuizId: {quizId}")
-            : Results.Ok(quiz);
+        return Results.Ok(quiz);
     }
 
     private async static ValueTask<IResult> GetQuizzesAsync(

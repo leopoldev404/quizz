@@ -7,7 +7,7 @@ using QuizzService.Core.Logging;
 
 namespace QuizzService.Core.Behaviors;
 public sealed class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : class, IQuery<TResponse>
+    where TRequest : IQuery<TResponse>
 {
     private readonly ILogger logger;
     private readonly IDistributedCache distributedCache;

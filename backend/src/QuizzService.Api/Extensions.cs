@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using QuizzService.Core.Quizzes;
 using QuizzService.Core.Questions;
+using FluentValidation;
 
 namespace QuizzService.Api;
 
@@ -37,10 +38,13 @@ public static class Extensions
     public static void AddMediator(this WebApplicationBuilder builder)
     {
         builder.Services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(typeof(MediatorAssembly).Assembly));
+            cfg.RegisterServicesFromAssembly(typeof(ApplicationAssembly).Assembly));
 
-        builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-        builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+        builder.Services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
+
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
     }
 
     public static void AddRepositories(this WebApplicationBuilder builder)
@@ -68,6 +72,18 @@ public static class Extensions
                     .GetCollection<Question>(settings.Value.QuestionsCollectionName);
 
             return new QuestionsRepository(questionsCollectionClient);
+        });
+    }
+
+    public static void AddCors(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                policy => policy
+                    .WithOrigins("http://localhost:4000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
         });
     }
 }
