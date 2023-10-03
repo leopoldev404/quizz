@@ -21,4 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\QuizzService.Api\QuizzService.Api.csproj" />
+    <ProjectReference Include="..\..\src\QuizzService.Core\QuizzService.Core.csproj" />
+    <ProjectReference Include="..\..\src\QuizzService.Infrastructure\QuizzService.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
