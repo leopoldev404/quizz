@@ -13,6 +13,14 @@ It's split in different folders:
 
 <br>
 
+## **Dev Environment** 👨‍💻
+
+- WSL-2
+- Ubuntu 22.04
+- Docker
+- Visual Studio Code
+- Visual Studio Code Extensions (Docker, MongoDB, C#, IntelliCode, ThunderClient)
+
 ## **Run Application** 🚀
 
 ### **System Requirements:**
@@ -64,9 +72,10 @@ _Also no Unit or Integration test has been done for the frontend application_
 - [MongoDB](https://www.mongodb.com/it-it?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core_prosp-brand_gic-null_emea-it_ps-all_desktop_it_lead&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=20378068754&adgroup=154980289881&cq_cmp=20378068754&gad=1&gclid=EAIaIQobChMI183GxdHXgQMV8oVoCR0pCAM3EAAYASAAEgLRPPD_BwE) as Database
 - [MongoDB Driver package](https://www.mongodb.com/docs/drivers/) for database connection and operations
 
-## **Missing** 🤔
+## **Missing** 🤔❓
 
-- Authentication/Authorization service for users
+- Authentication/Authorization for users
 - CI-CD for Deployment
 - More accurate unit tests
-- Pagination for Questions
+- More testing using TestContainers package
+- Pagination using mongodb cursor

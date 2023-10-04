@@ -24,5 +24,8 @@ jobs:
       - name: Build
         run: dotnet build backend/QuizzService.sln --configuration Release
 
-      - name: Test
-        run: dotnet test backend/QuizzService.sln --configuration Release --no-build
+      - name: Unit Test
+        run: dotnet test backend/tests/QuizzService.UnitTests
+
+      - name: Integration Test
+        run: dotnet test backend/tests/QuizzService.IntegrationTests
