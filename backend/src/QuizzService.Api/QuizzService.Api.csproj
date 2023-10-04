@@ -21,4 +21,10 @@
     <ProjectReference Include="..\QuizzService.Infrastructure\QuizzService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="dump.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
+
 </Project>

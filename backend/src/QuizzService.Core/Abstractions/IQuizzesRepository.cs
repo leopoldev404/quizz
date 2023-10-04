@@ -1,10 +1,12 @@
-using QuizzService.Core.Quizzes;
+using QuizzService.Core.Quizzes.Models;
 using QuizzService.Core.Quizzes.Queries;
 
 namespace QuizzService.Core.Abstractions;
 
 public interface IQuizzesRepository
 {
-    ValueTask<Quiz?> FindByIdAsync(GetQuizByIdQuery query);
-    ValueTask<List<Quiz>?> FindAllAsync(GetQuizzesQuery query);
+    ValueTask AddAsync(Quiz quizDocument);
+    ValueTask<Quiz?> GetByIdAsync(string id, CancellationToken cancellationToken);
+    ValueTask<List<Quiz>?> GetAllWithPaginationAsync(GetQuizzesQuery query, CancellationToken cancellationToken);
+    ValueTask<List<Quiz>?> GetAllAsync(GetQuizzesQuery query, CancellationToken cancellationToken);
 }

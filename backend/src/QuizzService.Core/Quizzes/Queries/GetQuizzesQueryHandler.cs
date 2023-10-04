@@ -1,4 +1,5 @@
 using QuizzService.Core.Abstractions;
+using QuizzService.Core.Quizzes.Models;
 
 namespace QuizzService.Core.Quizzes.Queries;
 
@@ -14,5 +15,5 @@ public sealed class GetQuizzesQueryHandler : IQueryHandler<GetQuizzesQuery, List
     public async Task<List<Quiz>?> Handle(
         GetQuizzesQuery request,
         CancellationToken cancellationToken) =>
-            await quizzesRepository.FindAllAsync(request);
+            await quizzesRepository.GetAllAsync(request, cancellationToken);
 }

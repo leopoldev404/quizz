@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Http;
 using QuizzService.Core.Abstractions;
 using QuizzService.Core.Utils;
 
-namespace QuizzService.Core.Quizzes.Queries;
+namespace QuizzService.Core.Questions.Queries;
 
-public class GetQuizByIdQueryValidator : AbstractValidator<GetQuizByIdQuery>
+public class GetQuestionsByQuizIdQueryValidator : AbstractValidator<GetQuestionsByQuizIdQuery>
 {
     private readonly IQuizzesRepository quizzesRepository;
 
-    public GetQuizByIdQueryValidator(IQuizzesRepository quizzesRepository)
+    public GetQuestionsByQuizIdQueryValidator(IQuizzesRepository quizzesRepository)
     {
         this.quizzesRepository = quizzesRepository;
 

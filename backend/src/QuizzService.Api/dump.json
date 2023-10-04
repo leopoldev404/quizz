@@ -1,0 +1,84 @@
+[
+  {
+    "Quiz": {
+      "Name": "history quiz",
+      "Category": "history",
+      "Description": "this quiz is intended for kids",
+      "Difficulty": "easy",
+      "Tags": [
+        "history",
+        "easy",
+        "kids",
+        "colombo",
+        "french-revolution",
+        "union-of-italy"
+      ]
+    },
+    "Questions": [
+      {
+        "Text": "When America was discovered?",
+        "Options": ["1344", "1492", "1942", "1424"],
+        "CorrectAnswer": "1492"
+      },
+      {
+        "Text": "In what year did the French Revolution take place?",
+        "Options": ["1789", "1879", "1579", "1900"],
+        "CorrectAnswer": "1789"
+      },
+      {
+        "Text": "In what year was Italy unified?",
+        "Options": ["1861", "1492", "1942", "1424"],
+        "CorrectAnswer": "1861"
+      }
+    ]
+  },
+  {
+    "Quiz": {
+      "Name": "math quiz",
+      "Category": "math",
+      "Description": "this quiz is intended for teenagers",
+      "Difficulty": "medium",
+      "Tags": [
+        "math",
+        "medium",
+        "teenagers",
+        "additions",
+        "fractions",
+        "equations"
+      ]
+    },
+    "Questions": [
+      {
+        "Text": "What is the result of 5 + 10 ?",
+        "Options": ["22", "25", "10", "15"],
+        "CorrectAnswer": "15"
+      },
+      {
+        "Text": "What is the result of 5 * 10 ?",
+        "Options": ["22", "25", "50", "15"],
+        "CorrectAnswer": "50"
+      },
+      {
+        "Text": "What is the result of 5 / 10 ?",
+        "Options": ["22", "0.5", "10", "15"],
+        "CorrectAnswer": "0.5"
+      }
+    ]
+  },
+  {
+    "Quiz": {
+      "Name": "science quiz",
+      "Category": "science",
+      "Description": "this quiz is intended for adults",
+      "Difficulty": "hard",
+      "Tags": ["science", "hard", "adults"]
+    },
+    "Questions": [
+      {
+        "Text": "What is the formula for water?",
+        "Options": ["CH3", "O2", "CH2", "H2O"],
+        "CorrectAnswer": "H2O"
+      }
+    ]
+  }
+]

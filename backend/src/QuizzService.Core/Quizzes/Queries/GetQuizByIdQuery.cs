@@ -1,4 +1,5 @@
 using QuizzService.Core.Abstractions;
+using QuizzService.Core.Quizzes.Models;
 
 namespace QuizzService.Core.Quizzes.Queries;
 

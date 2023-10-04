@@ -1,6 +1,6 @@
 namespace QuizzService.Infrastructure.Configurations;
 
-public class QuizzDatabaseSettings
+public record QuizzDatabaseSettings
 {
     public string? ConnectionString { get; init; }
     public string? Database { get; init; }

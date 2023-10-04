@@ -9,9 +9,8 @@ using QuizzService.Infrastructure.Questions;
 using QuizzService.Infrastructure.Quizzes;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using QuizzService.Core.Quizzes;
-using QuizzService.Core.Questions;
 using FluentValidation;
+using QuizzService.Core.Quizzes.Commands;
 
 namespace QuizzService.Api;
 
@@ -35,16 +34,16 @@ public static class Extensions
         builder.Services.AddSingleton<Core.Logging.ILogger, Logger>();
     }
 
-    public static void AddMediator(this WebApplicationBuilder builder)
+    public static void AddMediator(this IServiceCollection services)
     {
-        builder.Services.AddMediatR(cfg =>
+        services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(ApplicationAssembly).Assembly));
 
-        builder.Services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
+        services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
 
-        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }
 
     public static void AddRepositories(this WebApplicationBuilder builder)
@@ -52,32 +51,20 @@ public static class Extensions
         builder.Services.Configure<QuizzDatabaseSettings>(
             builder.Configuration.GetSection("QuizzDatabaseSettings"));
 
-        builder.Services.AddSingleton<IQuizzesRepository>(sp =>
+        builder.Services.AddSingleton<IMongoDatabase>(sp =>
         {
             var settings = sp.GetRequiredService<IOptions<QuizzDatabaseSettings>>();
-
-            var quizzesCollectionClient = new MongoClient(settings.Value.ConnectionString)
-                .GetDatabase(settings.Value.Database)
-                    .GetCollection<Quiz>(settings.Value.QuizzesCollectionName);
-
-            return new QuizzesRepository(quizzesCollectionClient);
+            var mongoClient = new MongoClient(settings.Value.ConnectionString);
+            return mongoClient.GetDatabase(settings.Value.Database);
         });
 
-        builder.Services.AddSingleton<IQuestionsRepository>(sp =>
-        {
-            var settings = sp.GetRequiredService<IOptions<QuizzDatabaseSettings>>();
-
-            var questionsCollectionClient = new MongoClient(settings.Value.ConnectionString)
-                .GetDatabase(settings.Value.Database)
-                    .GetCollection<Question>(settings.Value.QuestionsCollectionName);
-
-            return new QuestionsRepository(questionsCollectionClient);
-        });
+        builder.Services.AddSingleton<IQuizzesRepository, QuizzesRepository>();
+        builder.Services.AddSingleton<IQuestionsRepository, QuestionsRepository>();
     }
 
-    public static void AddCors(this WebApplicationBuilder builder)
+    public static void AddDefaultCors(this IServiceCollection services)
     {
-        builder.Services.AddCors(options =>
+        services.AddCors(options =>
         {
             options.AddDefaultPolicy(
                 policy => policy
@@ -85,5 +72,11 @@ public static class Extensions
                     .AllowAnyHeader()
                     .AllowAnyMethod());
         });
+    }
+
+    public static async ValueTask InitQuizzDbAsync(this WebApplication app)
+    {
+        var sender = app.Services.GetRequiredService<ISender>();
+        await sender.Send(new InitDbCommand());
     }
 }

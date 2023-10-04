@@ -34,7 +34,6 @@ services:
       - "27017:27017"
     volumes:
       - quizz-data:/data/db
-      - ./../scripts/init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js
 
 volumes:
   quizz-data:

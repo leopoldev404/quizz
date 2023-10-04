@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using QuizzService.Core.Quizzes.Queries;
 
 namespace QuizzService.Api.Quizzes;
@@ -14,17 +15,17 @@ public static class QuizzesEndpoints
     }
 
     private async static ValueTask<IResult> GetQuizByIdAsync(
-        ISender sender,
-        string quizId)
+        [FromServices] ISender sender,
+        [FromRoute] string quizId)
     {
         var quiz = await sender.Send(new GetQuizByIdQuery(quizId));
         return Results.Ok(quiz);
     }
 
     private async static ValueTask<IResult> GetQuizzesAsync(
-        ISender sender,
-        int pageNumber = 0,
-        int PageSize = 10)
+        [FromServices] ISender sender,
+        [FromQuery] int pageNumber = 0,
+        [FromQuery] int PageSize = 10)
     {
         var quizzes = await sender.Send(new GetQuizzesQuery(pageNumber, PageSize));
         return Results.Ok(quizzes);
