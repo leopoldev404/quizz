@@ -1,18 +1,23 @@
-﻿using QuizzService.Api;
+﻿using FluentValidation;
+using QuizzService.Api;
 using QuizzService.Api.Exceptions;
 using QuizzService.Api.Questions;
 using QuizzService.Api.Quizzes;
 using QuizzService.Api.Scores;
 using QuizzService.Api.Transactions;
+using QuizzService.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddLogger();
+builder.AddOptions();
 builder.Services.AddMediator();
+builder.Services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
+builder.Services.AddPipelineBehaviors();
+builder.Services.AddRepositories();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddDefaultCors();
 builder.Services.AddHealthChecks();
-builder.AddRepositories();
 builder.Services.AddTransient<ExceptionsHandlingMiddleware>();
 
 var app = builder.Build();

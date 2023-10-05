@@ -40,30 +40,34 @@ public static class Extensions
     {
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(ApplicationAssembly).Assembly));
+    }
 
-        services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
-
+    public static void AddPipelineBehaviors(this IServiceCollection services)
+    {
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }
 
-    public static void AddRepositories(this WebApplicationBuilder builder)
+    public static void AddOptions(this WebApplicationBuilder builder)
     {
         builder.Services.Configure<QuizzDatabaseSettings>(
             builder.Configuration.GetSection("QuizzDatabaseSettings"));
+    }
 
-        builder.Services.AddSingleton(sp =>
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddSingleton(sp =>
         {
             var settings = sp.GetRequiredService<IOptions<QuizzDatabaseSettings>>();
             var mongoClient = new MongoClient(settings.Value.ConnectionString);
             return mongoClient.GetDatabase(settings.Value.Database);
         });
 
-        builder.Services.AddSingleton<IQuizzesRepository, QuizzesRepository>();
-        builder.Services.AddSingleton<IQuestionsRepository, QuestionsRepository>();
-        builder.Services.AddSingleton<IScoresRepository, ScoresRepository>();
-        builder.Services.AddSingleton<ITransactionsRepository, TransactionsRepository>();
+        services.AddSingleton<IQuizzesRepository, QuizzesRepository>();
+        services.AddSingleton<IQuestionsRepository, QuestionsRepository>();
+        services.AddSingleton<IScoresRepository, ScoresRepository>();
+        services.AddSingleton<ITransactionsRepository, TransactionsRepository>();
     }
 
     public static void AddDefaultCors(this IServiceCollection services)
