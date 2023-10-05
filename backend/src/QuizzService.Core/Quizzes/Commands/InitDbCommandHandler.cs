@@ -1,7 +1,6 @@
 using System.Text.Json;
 using QuizzService.Core.Abstractions;
 using QuizzService.Core.Dump;
-using QuizzService.Core.Logging;
 using QuizzService.Core.Questions.Models;
 using QuizzService.Core.Quizzes.Models;
 
@@ -11,16 +10,13 @@ public sealed class InitDbCommandHandler : ICommandHandler<InitDbCommand, bool>
 {
     private readonly IQuizzesRepository quizzesRepository;
     private readonly IQuestionsRepository questionsRepository;
-    private readonly ILogger logger;
 
     public InitDbCommandHandler(
         IQuestionsRepository questionsRepository,
-        IQuizzesRepository quizzesRepository,
-        ILogger logger)
+        IQuizzesRepository quizzesRepository)
     {
         this.questionsRepository = questionsRepository;
         this.quizzesRepository = quizzesRepository;
-        this.logger = logger;
     }
 
     public async Task<bool> Handle(

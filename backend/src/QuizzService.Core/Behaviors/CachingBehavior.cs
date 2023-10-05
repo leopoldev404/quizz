@@ -6,6 +6,7 @@ using QuizzService.Core.Abstractions;
 using QuizzService.Core.Logging;
 
 namespace QuizzService.Core.Behaviors;
+
 public sealed class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IQuery<TResponse>
 {

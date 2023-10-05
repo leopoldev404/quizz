@@ -9,7 +9,6 @@ using QuizzService.Infrastructure.Questions;
 using QuizzService.Infrastructure.Quizzes;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using FluentValidation;
 using QuizzService.Core.Quizzes.Commands;
 using QuizzService.Infrastructure.Scores;
 using QuizzService.Infrastructure.Transactions;
@@ -72,14 +71,11 @@ public static class Extensions
 
     public static void AddDefaultCors(this IServiceCollection services)
     {
-        services.AddCors(options =>
-        {
-            options.AddDefaultPolicy(
-                policy => policy
-                    .WithOrigins("http://localhost:4000")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod());
-        });
+        services.AddCors(options => options
+            .AddDefaultPolicy(policy => policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()));
     }
 
     public static async ValueTask InitQuizzDbAsync(this WebApplication app)
