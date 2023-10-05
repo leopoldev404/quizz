@@ -13,14 +13,25 @@
     <main>
         <h1>Welcome to Quizz Application!</h1>
 
-        <form>
-            <input type="text" placeholder="Insert your name..." required>
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            
+            <button type="submit">Save to localStorage</button>
+        </form>
+<!-- 
+        <form id="myForm">
+            <input type="text" placeholder="Insert your name..." name="name" required>
             <br>
             <div id="dropdown-container">
-                <select id="dropdown" required></select>
+                <select title="Select topic" name="topic" id="dropdown" required></select>
             </div>
-            <input type="submit" placeholder="Send">
-        </form>
+            <br>
+            <button type="submit">Save</button>
+        </form> -->
 
     </main>
 

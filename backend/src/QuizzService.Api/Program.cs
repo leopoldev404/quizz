@@ -2,6 +2,8 @@
 using QuizzService.Api.Exceptions;
 using QuizzService.Api.Questions;
 using QuizzService.Api.Quizzes;
+using QuizzService.Api.Scores;
+using QuizzService.Api.Transactions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,8 @@ var app = builder.Build();
 
 app.MapQuestionsEndpoints();
 app.MapQuizzesEndpoints();
+app.MapScoresEndpoints();
+app.MapTransactionsEndpoints();
 app.MapHealthChecks("/ok");
 
 app.UseCors();

@@ -1,4 +1,3 @@
-using MediatR;
 using Moq;
 using QuizzService.Core.Abstractions;
 using QuizzService.Core.Quizzes.Models;

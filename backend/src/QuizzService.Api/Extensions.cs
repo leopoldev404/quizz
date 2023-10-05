@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using FluentValidation;
 using QuizzService.Core.Quizzes.Commands;
+using QuizzService.Infrastructure.Scores;
+using QuizzService.Infrastructure.Transactions;
 
 namespace QuizzService.Api;
 
@@ -51,7 +53,7 @@ public static class Extensions
         builder.Services.Configure<QuizzDatabaseSettings>(
             builder.Configuration.GetSection("QuizzDatabaseSettings"));
 
-        builder.Services.AddSingleton<IMongoDatabase>(sp =>
+        builder.Services.AddSingleton(sp =>
         {
             var settings = sp.GetRequiredService<IOptions<QuizzDatabaseSettings>>();
             var mongoClient = new MongoClient(settings.Value.ConnectionString);
@@ -60,6 +62,8 @@ public static class Extensions
 
         builder.Services.AddSingleton<IQuizzesRepository, QuizzesRepository>();
         builder.Services.AddSingleton<IQuestionsRepository, QuestionsRepository>();
+        builder.Services.AddSingleton<IScoresRepository, ScoresRepository>();
+        builder.Services.AddSingleton<ITransactionsRepository, TransactionsRepository>();
     }
 
     public static void AddDefaultCors(this IServiceCollection services)

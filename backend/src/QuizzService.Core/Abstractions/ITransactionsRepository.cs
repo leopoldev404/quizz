@@ -1,9 +1,8 @@
-using QuizzService.Core.Transactions;
-using QuizzService.Core.Transactions.Commands;
+using QuizzService.Core.Transactions.Models;
 
 namespace QuizzService.Core.Abstractions;
 
 public interface ITransactionsRepository
 {
-    ValueTask<Transaction> InsertAsync(CreateTransactionCommand createTransactionCommand);
+    ValueTask InsertAsync(Transaction transaction);
 }

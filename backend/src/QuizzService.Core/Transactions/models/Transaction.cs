@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace QuizzService.Core.Transactions;
+namespace QuizzService.Core.Transactions.Models;
 
 public record Transaction
 {

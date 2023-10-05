@@ -1,9 +1,8 @@
-using QuizzService.Core.Scores;
-using QuizzService.Core.Scores.Commands;
+using QuizzService.Core.Scores.Models;
 
 namespace QuizzService.Core.Abstractions;
 
 public interface IScoresRepository
 {
-    ValueTask<Score> InsertAsync(CreateScoreCommand createScoreCommand);
+    ValueTask InsertAsync(Score score);
 }
