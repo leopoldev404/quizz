@@ -6,4 +6,4 @@ namespace QuizzService.Core.Scores.Commands;
 public record CreateScoreCommand(
     string Username,
     string QuizId,
-    string ScoreValue) : ICommand<Score>;
+    int ScoreValue) : ICommand<Score>;

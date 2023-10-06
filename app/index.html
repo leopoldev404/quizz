@@ -5,37 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="main.css">
     <title>Quizz App</title>
 </head>
 
 <body>
     <main>
         <h1>Welcome to Quizz Application!</h1>
-
-        <form id="myForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name">
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-            
-            <button type="submit">Save to localStorage</button>
-        </form>
-<!-- 
-        <form id="myForm">
-            <input type="text" placeholder="Insert your name..." name="name" required>
-            <br>
-            <div id="dropdown-container">
-                <select title="Select topic" name="topic" id="dropdown" required></select>
-            </div>
-            <br>
-            <button type="submit">Save</button>
-        </form> -->
-
+        <h3>Enter your Name and select a quiz to continue</h3>
+        <input id="input-name" placeholder="Insert your name" name="username" type="text" required>
+        <select name="quiz" id="quiz-select" required></select>
+        <button id="start">Start Quiz!</button>
     </main>
 
-    <script type="module" src="js/main.js"></script>
+    <script src="main.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 

@@ -16,7 +16,7 @@ public record Score
     public string? Username { get; set; }
 
     [BsonElement("score")]
-    public string? ScoreValue { get; set; }
+    public int? ScoreValue { get; set; }
 
     [BsonElement("date")]
     public DateTime? ScoreDate { get; set; }

@@ -29,6 +29,8 @@ public sealed class ExceptionsHandlingMiddleware : IMiddleware
         }
         catch (Exception exception)
         {
+            logger.LogError(exception.Message);
+
             await HandleExceptionAsync(
                 context,
                 StatusCodes.Status500InternalServerError,
