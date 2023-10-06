@@ -48,10 +48,13 @@ public static class Extensions
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }
 
-    public static void AddOptions(this WebApplicationBuilder builder)
+    public static void AddApplicationOptions(this IServiceCollection services)
     {
-        builder.Services.Configure<QuizzDatabaseSettings>(
-            builder.Configuration.GetSection("QuizzDatabaseSettings"));
+        services
+            .AddOptions<QuizzDatabaseSettings>()
+            .BindConfiguration("QuizzDatabaseSettings")
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
     }
 
     public static void AddRepositories(this IServiceCollection services)

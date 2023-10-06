@@ -10,7 +10,7 @@ using QuizzService.Core;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddLogger();
-builder.AddOptions();
+builder.Services.AddApplicationOptions();
 builder.Services.AddMediator();
 builder.Services.AddValidatorsFromAssemblyContaining<ApplicationAssembly>();
 builder.Services.AddPipelineBehaviors();
